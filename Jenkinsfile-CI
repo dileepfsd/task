@@ -1,0 +1,25 @@
+pipeline{
+    agent any
+      triggers {
+            pollSCM('H/15 * * * *')
+        }
+
+    stages{
+        stage('Cleaning Stage') {
+            steps {
+               bat 'mvn clean'
+            }
+        }
+        stage('Testing stage') {
+            steps {
+                 bat 'mvn test'
+            }
+        }
+        stage('Package stage') {
+            steps {
+                bat 'mvn package'
+            }
+        }
+     }
+
+}
